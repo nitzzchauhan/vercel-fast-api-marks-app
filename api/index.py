@@ -22,6 +22,9 @@ with open(data_path, "r") as f:
 # Convert list to dictionary for fast lookup
 student_dict = {student["name"]: student["marks"] for student in students}
 
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
 @app.get("/api")
 def get_marks(name: List[str] = []):
     result = [student_dict.get(n, 0) for n in name]
